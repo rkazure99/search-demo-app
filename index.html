@@ -1,1 +1,42 @@
+<!-- redeploy trigger -->
 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search App</title>
+</head>
+<body>
+<h2>Search Test</h2>
+<input id="q" placeholder="Search..." />
+<button onclick="run()">Search</button>
+
+<pre id="out"></pre>
+
+<script>
+const serviceName = "aisearch99";
+const indexName = "aisearch99";
+const apiKey = "ss16qyYGfhrIOiJxPWzciqaJD0vDoZwFHydssMX8m9AzSeBvWupd";
+
+
+async function run() {
+  const query = document.getElementById("q").value;
+
+  const res = await fetch(
+    `https://${serviceName}.search.windows.net/indexes/${indexName}/docs/search?api-version=2023-11-01`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "api-key": apiKey
+      },
+      body: JSON.stringify({ search: query })
+    }
+  );
+
+  const data = await res.json();
+  document.getElementById("out").textContent = JSON.stringify(data, null, 2);
+}
+</script>
+
+</body>
+</html>
