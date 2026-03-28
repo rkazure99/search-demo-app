@@ -1,6 +1,11 @@
 {
   "routes": [
     {
+      "route": "/",
+      "statusCode": 302,
+      "redirect": "/.auth/login/aad"
+    },
+    {
       "route": "/.auth/*",
       "allowedRoles": ["anonymous"]
     },
